@@ -1,89 +1,121 @@
 <!doctype html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>Hello APP</title>
-    <link rel="stylesheet" type="text/css" href="./css/api.css" />
-    <style type="text/css">
-        html,
-        body {
-            height: 100%;
-        }
-
-        .wrap {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-flex-flow: column;
-        }
-
-        header {
-            height: 44px;
-            width: 100%;
-            text-align: center;
-            background-color: #81a9c3;
-            color: #fff;
-            line-height: 44px;
-            font-size: 20px;
-        }
-
-        .flex-1 {
-            -webkit-box-flex: 1;
-            -webkit-flex: 1;
-        }
-
-        footer {
-            height: 30px;
-            width: 100%;
-            background-color: #81a9c3;
-            color: white;
-            line-height: 30px;
-            text-align: center;
-        }
+    <title>app</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <style>
+        #header{width:100%;float:left;background-color: #068dca;height:45px;}
+        #header ul{width:100%;height:100%;overflow: hidden;float:left;}
+        #header ul li {width:100%;height: 50px; line-height: 50px;
+        text-align: center; display: none; color: #FFFFFF;
+         position: relative;font-size: 18px;background-color: #068dca;}
+        #header ul li span.add-resume-btn{display:block;height: 50px;line-height:66px;
+        position:absolute;right:0px;bottom:0;padding:8px;}
+        #header ul li.active{ display: block; }
+        #footer{  background-color:rgba(255,255,255,.7);position: absolute;left:0;bottom:0;width:100%;font-size:13px;color:#666;}
+        #footer ul li{padding-top: 36px;padding-bottom: 4px;background: url() no-repeat center 6px; background-size: auto 24px; text-align: center; }
+        #footer ul li.active{ color: #068dca; }
+        #footer ul li:nth-child(1){ background-image: url(./image/home.png); }
+        #footer ul li:nth-child(2){ background-image: url(./image/yes.png); }
+        #footer ul li:nth-child(3){ background-image: url(./image/resume.png); }
+        #footer ul li:nth-child(4){ background-image: url(./image/user.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(./image/home_active.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(./image/yes_active.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(./image/resume_active.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(./image/user_active.png); }
     </style>
 </head>
-
-<body class="wrap">
-    <header>APICloud</header>
-    <section class="flex-1">
-
-    </section>
-    <footer>Copyright &copy;<span id="year"></span></footer>
+<body>
+<div id="wrap">
+    <div id="header">
+        <ul>
+            <li class="border-b active">首页</li>
+            <li class="border-b">职位推荐</li>
+            <li class="border-b" >我的简历<span class="add-resume-btn" tapmode="hover" onclick="addResume()">新增简历</span></li>
+            <li class="border-b" >个人中心</li>
+        </ul>
+    </div>
+    <div id="main"></div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap">
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >首页</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >职位推荐</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的简历</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >个人中心</li>
+        </ul>
+    </div>
+</div>
 </body>
+</html>
 <script type="text/javascript" src="./script/api.js"></script>
 <script type="text/javascript">
-    apiready = function() {
-        //输出Log，Log将显示在APICloud Studio控制台
-        console.log("Hello World! Hello APICloud!");
-
-        var header = $api.dom('header'); // 获取 header 标签元素
-        var footer = $api.dom('footer'); // 获取 footer 标签元素
-
-        // 1.修复开启沉浸式效果带来的顶部Header与手机状态栏重合的问题，最新api.js方法已支持适配iPhoneX；
-        // 2.默认已开启了沉浸式效果 config.xml中 <preference name="statusBarAppearance" value="true"/>
-        // 3.沉浸式效果适配支持iOS7+，Android4.4+以上版本
-        var headerH = $api.fixStatusBar(header);
-        // 最新api.js为了适配iPhoneX增加的方法，修复底部Footer部分与iPhoneX的底部虚拟横条键重叠的问题；
-        var footerH = $api.fixTabBar(footer);
-
-        api.openFrame({
-            name: 'main',
-            url: 'html/main.html',
-            bounces: true,
-            rect: { // 推荐使用Margin布局，用于适配屏幕的动态变化
-                marginTop: headerH, // main页面距离win顶部的高度
-                marginBottom: footerH, // main页面距离win底部的高度
-                w: 'auto' // main页面的宽度 自适应屏幕宽度
-            }
+    apiready = function () {
+        $api.fixIos7Bar( $api.dom('#header') );
+        api.setStatusBarStyle({
+            style: 'light'
         });
+        funIniGroup();
+    }
+	function addResume(){
+		api.sendEvent({
+		    name: 'myEvent',
+		    extra: {
+		        eventType: 'addresume'
+		    }
+		});
+	}
+    function funIniGroup(){
+        var eHeaderLis = $api.domAll('#footer li'),
+            frames = [];
+        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
+                frames.push( {
+                    name: 'frame'+i,
+                    url: './html/frame'+i+'.html',
+                    bgColor : '#F0F0F0',
+                    bounces:true
+                } )
+        }
+        api.openFrameGroup({
+            name: 'group',
+            scrollEnabled: false,
+            rect: {
+                x: 0,
+                y: $api.dom('#header').offsetHeight,
+                w: api.winWidth,
+                h: api.winHeight - $api.dom('#footer').offsetHeight-$api.dom('#header').offsetHeight
+//              - $api.dom('#header').offsetHeight
+            },
+            index: 0,
+            preload:2,
+            frames: frames,
+            customRefreshHeader:'UIPullRefreshDrop'
+        }, function (ret, err) {
 
-        // 获取当前年份时间，并加载显示到页面
-        var year = $api.byId('year');
-        year.innerHTML = new Date().getFullYear();
-    };
-
+        });
+    }
+    //随意切换按钮
+    function randomSwitchBtn( tag ) {
+        if( tag == $api.dom('#footer li.active') )return;
+        var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('#header li'),
+            index = 0;
+        for (var i = 0,len = eFootLis.length; i < len; i++) {
+            if( tag == eFootLis[i] ){
+                index = i;
+            }else{
+                $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
+            }
+        }
+        $api.addCls( eFootLis[index], 'active');
+        $api.addCls( eHeaderLis[index], 'active');
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+    }
 </script>
-
-</html>

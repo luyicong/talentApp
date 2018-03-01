@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+    	.tuijian-header{
+    	width:100%;
+    	height:45px;
+    	line-height:45px;
+    	background-color:#068DCA;
+    	text-align:center;color:#FFFFFF;
+    	font-size:18px;
+    	}
+    </style>
+</head>
+<body id="tuijian-page">
+	<div id="tj_jobs" class="tj-job-list">
+		<div class="ti-job-item" v-for="item in jobs" v-bind="{id:item.id,text:item.jobName}" tapmode="hover" onclick="openDetailWindow(this)">
+			<div class="tj-left">
+				<p class="tj-item-title" v-text="item.jobName"></p>
+				<p id="atitle" v-text="item.companyName"></p>
+				<p class="tj-tag-info">
+					<span>经验：<em>{{ item.experience }}</em></span>
+					<span>学历：<em>{{ item.education }}</em></span>
+				</p>
+			</div>
+			<div class="tj-right">
+				<p class="create-time" v-text="item.createTime"></p>
+				<p class="address" v-text="item.address"></p>
+				<p v-text="item.salary"></p>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.js"></script>
+<script type="text/javascript" src="../script/vue-resource.min.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		api.parseTapmode();
+		//下拉刷新
+		api.setCustomRefreshHeaderInfo({
+            bgColor: '#eee',
+		    tips: {
+		        pull: '下拉刷新',
+		        threshold: '松开立即刷新',
+		        load: '正在刷新'
+		    }
+        }, function() {
+                //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+                //下拉刷新被触发，使用 api.refreshHeaderLoadDone() 结束加载中状态
+               	setTimeout(function(){
+		            api.refreshHeaderLoadDone()
+		        },2000);
+        });
+	}
+	
+	var tuijanJobs = new Vue({
+			el:'#tj_jobs',
+			data:{
+				jobs:[
+					{
+						id : 001,
+						jobName :'前端开发工程师1',
+						companyName : '广西高科技网络公司1',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 002,
+						jobName :'php开发工程师2',
+						companyName : '广西高科技网络公司2',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '5000-8000'
+					},
+					{
+						id : 003,
+						jobName :'前端开发工程师3',
+						companyName : '广西高科技网络公司3',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 004,
+						jobName :'前端开发工程师4',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 005,
+						jobName :'前端开发工程师5',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 006,
+						jobName :'前端开发工程师6',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 007,
+						jobName :'前端开发工程师7',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 008,
+						jobName :'前端开发工程师8',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 009,
+						jobName :'前端开发工程师9',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 010,
+						jobName :'前端开发工程师10',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 011,
+						jobName :'前端开发工程师11',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 012,
+						jobName :'前端开发工程师12',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					},
+					{
+						id : 013,
+						jobName :'前端开发工程师13',
+						companyName : '广西高科技网络公司',
+						experience : '2年以上',
+						education :'大专',
+						createTime : '2017-03-10',
+						address : '南宁市',
+						salary : '6000-12000'
+					}
+				]
+			}
+	});
+	
+	function openDetailWindow(obj){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: 'details_window',
+            url: 'details_window.html',
+            bounces:false,
+            delay: delay,
+            pageParam : {
+            	id : $api.attr(obj, 'id'),
+            	text : $api.attr(obj,'text')
+            },
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+</script>
+</html>

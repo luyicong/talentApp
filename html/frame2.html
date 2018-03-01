@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>简历管理</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+</head>
+<body>
+	<div id="resume-content">
+		<div class="resume-indro">可以创建2份简历</div>
+		<div class="resume-list">
+			<div id="list-item" class="list-item">
+				<div class="list-item-top">
+					<p class="resume-title">求职前端开发工程师</p>
+					<p class="resume-tag">
+						<span class="ispass">已审核</span>
+						<span class="default">默认</span>
+					</p>
+					<div class="resume-branch">
+						<span class="green">415</span>
+						<span class="text">竞争力</span>
+					</div>
+				</div>
+				<div class="list-item-bottom">
+					<div class="resume-status-list nav-flex-wrap">
+						<div class="status-item nav-flex-con">
+							<span class="status-title">刷新时间</span>
+							<span>2017-03-03</span>
+						</div>
+						<div class="status-item nav-flex-con">
+							<span class="status-title">被查看次数</span>
+							<span>96</span>
+						</div>
+						<div class="status-item nav-flex-con">
+							<span class="status-title">公开程度</span>
+							<span>所有企业可见</span>
+						</div>
+					</div>
+					<div class="resume-operable-btn nav-flex-wrap">
+						<div class="operable-item nav-flex-con">
+							<i></i>
+							<span class="gray">已为默认</span>
+						</div>
+						<div class="operable-item nav-flex-con">
+							<i></i>
+							<span>公开程度</span>
+						</div>
+						<div class="operable-item nav-flex-con">
+							<i></i>
+							<span>编辑简历</span>
+						</div>
+						<div class="operable-item nav-flex-con">
+							<i></i>
+							<span>删除简历</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		//下拉刷新
+		api.setCustomRefreshHeaderInfo({
+            bgColor: '#eee',
+		    tips: {
+		        pull: '下拉刷新',
+		        threshold: '松开立即刷新',
+		        load: '正在刷新'
+		    }
+        }, function() {
+                //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+                //下拉刷新被触发，使用 api.refreshHeaderLoadDone() 结束加载中状态
+               	setTimeout(function(){
+		            api.refreshHeaderLoadDone()
+		        },2000);
+        });
+        //时间监听
+		api.addEventListener({
+		    name: 'myEvent'
+		}, function(ret, err) {
+//		    alert(JSON.stringify(ret.value));
+			if(ret.eventType = 'addresume'){
+				$api.css($api.dom('#resume-content'),'border:1px solid red');
+			}
+		});
+	};
+</script>
+</html>

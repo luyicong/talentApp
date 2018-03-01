@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/swiper-3.4.1.min.css"/>
+</head>
+<body id="index-page">
+	<div id="index-header">
+		<div class="search-box" tapmode onclick="openSearchWin()"><span class="icon"></span><span>请输入职位名/公司名/关键字</span></div>
+	</div>
+	<div id="banner" class="swiper-container">
+	    <div class="swiper-wrapper">
+	        <div class="swiper-slide"><img src="../image/1.png" alt="" /></div>
+	        <div class="swiper-slide"><img src="../image/2.png" alt="" /></div>
+	        <div class="swiper-slide"><img src="../image/3.png" alt="" /></div>
+	    </div>
+	    <!-- 如果需要分页器 -->
+	    <div class="swiper-pagination"></div>
+	</div>
+	<div id="nav-wrap">
+		<ul class="nav-flex-wrap" id="vue-app-nav">
+			<li class="nav-flex-con" v-for="item in navs" v-bind="{pageName:item.pageName}" tapmode="hover" onclick="openJobListWin(this)">{{item.text}}</li>
+		</ul>
+	</div>
+	<!--job-list start-->
+	<div id="hot-job-list-wrap">
+		<div id="hot-job-list">
+			<div class="job-item" v-for="item in jobs"  v-bind="{id:item.id,text:item.text}" tapmode="hover" onclick="openDetailWin(this)">{{item.text}}</div>
+		</div>
+	</div>
+	<!--job-list end-->
+	<!--news-job-list start-->
+	<div id="news-job-list">
+		<div class="list-item">
+			<div class="item-list-left" style="background-color:#FF6666;">急聘</div>
+			<div class="item-list-right">
+				<ul>
+					<li text="web前端开发工程师" tapmode="hover" onclick="openDetailWin(this)">
+						<p class="title">web前端开发工程师</p>
+						<p>广西高科技网络公司</p>
+						<p class="tag">
+							<span>大专</span>
+							<span>西乡塘区</span>
+							<span>7000-15000</span>
+						</p>
+					</li>
+					<li text="php开发工程师" tapmode="hover" onclick="openDetailWin(this)">
+						<p class="title">php开发工程师</p>
+						<p>广西高科技网络公司</p>
+						<p class="tag">
+							<span>大专</span>
+							<span>青秀区</span>
+							<span>6000-12000</span>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="list-item">
+			<div class="item-list-left" style="background-color:#FF9B56;">最新职位</div>
+			<div class="item-list-right">
+				<ul>
+					<li text="node.js开发工程师" tapmode="hover" onclick="openDetailWin(this)">
+						<p class="title">node.js开发工程师</p>
+						<p>广西高科技网络公司</p>
+						<p class="tag">
+							<span>大专</span>
+							<span>青秀区</span>
+							<span>8000-15000</span>
+						</p>
+					</li>
+					<li text="python开发工程师" tapmode="hover" onclick="openDetailWin(this)">
+						<p class="title">python开发工程师</p>
+						<p>广西高科技网络公司</p>
+						<p class="tag">
+							<span>大专</span>
+							<span>青秀区</span>
+							<span>7000-15000</span>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="list-item">
+			<div class="item-list-left" style="background-color:#9ACC9B;">毕业生</div>
+			<div class="item-list-right">
+				<ul>
+					<li text="前端开发实习" tapmode="hover" onclick="openDetailWin(this)">
+						<p class="title">前端开发实习</p>
+						<p>广西高科技网络公司</p>
+						<p class="tag">
+							<span>大专</span>
+							<span>青秀区</span>
+							<span>1500-2500</span>
+						</p>
+					</li>
+					<li text="php实习生" tapmode="hover" onclick="openDetailWin(this)">
+						<p class="title">php实习生</p>
+						<p>广西高科技网络公司</p>
+						<p class="tag">
+							<span>大专</span>
+							<span>青秀区</span>
+							<span>1000-2000</span>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="list-item">
+			<div class="item-list-left" style="background-color:#E9B90F;">高薪职位</div>
+			<div class="item-list-right">
+				<ul>
+					<li text="高级前端开发工程师" tapmode="hover" onclick="openDetailWin(this)">
+						<p class="title">高级前端开发工程师</p>
+						<p>广西高科技网络公司</p>
+						<p class="tag">
+							<span>大专</span>
+							<span>青秀区</span>
+							<span>10000-15000</span>
+						</p>
+					</li>
+					<li text="高级php工程师" tapmode="hover" onclick="openDetailWin(this)">
+						<p class="title">高级php工程师</p>
+						<p>广西高科技网络公司</p>
+						<p class="tag">
+							<span>大专</span>
+							<span>青秀区</span>
+							<span>7000-15000</span>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!--news-job-list end-->
+	<!--bottom nav start-->
+	<div id="bottom-nav-wrap">
+		<ul id="nav-content" class="nav-flex-wrap">
+			<li class="nav-flex-con">名企招聘</li>
+            <li class="nav-flex-con">推荐企业</li>
+            <li class="nav-flex-con">热点招聘</li>
+            <li class="nav-flex-con">品牌招聘</li>
+		</ul>
+	</div>
+	<!--bottom nav end-->
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/swiper-3.4.1.min.js"></script>
+<script type="text/javascript" src="../script/vue.js"></script>
+<script type="text/javascript" src="../script/vue-resource.min.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		api.parseTapmode();
+		//下拉刷新
+		api.setCustomRefreshHeaderInfo({
+            bgColor: '#eee',
+				    tips: {
+				        pull: '下拉刷新',
+				        threshold: '松开立即刷新',
+				        load: '正在刷新'
+				    }
+        }, function() {
+                //下拉刷新被触发，自动进入加载状态，使用 api.refreshHeaderLoadDone() 手动结束加载中状态
+                //下拉刷新被触发，使用 api.refreshHeaderLoadDone() 结束加载中状态
+               	setTimeout(function(){
+		            api.refreshHeaderLoadDone()
+		        },2000);
+        });
+
+
+
+		var mySwiper = new Swiper ('.swiper-container', {
+			autoplay:2000,
+		    direction: 'horizontal',
+		    loop: true,
+		    // 如果需要分页器
+		    pagination: '.swiper-pagination',
+
+		  });
+	};
+
+	function openJobListWin(obj){
+			var delay = 0;
+	        if(api.systemType != 'ios'){
+	            delay = 300;
+	        }
+	        api.openWin({
+	        	name: ''+$api.attr(obj,'pageName')+'',
+	            url: ''+$api.attr(obj,'pageName')+'.html',
+	            bounces:false,
+	            delay: delay,
+	            slidBackEnabled:true,
+	            vScrollBarEnabled:false
+	        });
+	}
+	function openDetailWin(obj){
+	        var delay = 0;
+	        if(api.systemType != 'ios'){
+	            delay = 300;
+	        }
+	        api.openWin({
+	            name: 'details_window',
+	            url: 'details_window.html',
+	            bounces:false,
+	            delay: delay,
+	            pageParam: {
+	            	id : $api.attr(obj,'id'),
+	            	text : $api.attr(obj,'text')
+	            },
+	            slidBackEnabled:true,
+	            vScrollBarEnabled:false
+	        });
+	}
+	function openSearchWin(){
+	        var delay = 0;
+	        if(api.systemType != 'ios'){
+	            delay = 300;
+	        }
+	        api.openWin({
+	            name: 'search_window',
+	            url: 'search_window.html',
+	            bounces:false,
+	            delay: delay,
+	            slidBackEnabled:true,
+	            vScrollBarEnabled:false
+	        });
+   }
+	//顶部导航
+	var appNav = new Vue({
+		  el: '#vue-app-nav',
+		  data: {
+		    navs: [
+		      { pageName:'job_fairs_window',text: '招聘会' },
+		      { pageName:'institutions_window',text: '事业单位' },
+		      { pageName:'cate_job_window',text: '分类招聘' }
+		    ]
+		  }
+	});
+	//热门职位列表
+	var newJobs = new Vue({
+		el: '#hot-job-list',
+		data: {
+			jobs: [
+				{
+					id : 001,
+					text:'前端工程师'
+				},
+				{
+					id : 002,
+					text:'程序员'
+				},
+				{
+					id : 003,
+					text:'会计'
+				},
+				{
+					id : 004,
+					text:'建筑工程师'
+				},
+				{
+					id : 005,
+					text:'UI设计'
+				},
+				{
+					id : 006,
+					text:'经理秘书'
+				},
+				{
+					id : 007,
+					text:'销售经理'
+				},
+				{
+					id : 008,
+					text:'ios开发'
+				},
+				{
+					id : 009,
+					text:'安卓开发'
+				},
+				{
+					id : 010,
+					text:'运维工程师'
+				},
+				{
+					id : 011,
+					text:'数据库工程师'
+				},
+				{
+					id : 012,
+					text:'经理助理'
+				}
+			]
+		}
+	});
+</script>
+</html>

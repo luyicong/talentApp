@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        .empty{ text-align: center; padding: 120px 0; }
+        
+    </style>
+</head>
+<body id="user-page">
+    <!--<div class="empty">文档</div>-->
+    <div id="user-center">
+    	<div id="user-top">
+    		<div class="user-info-wrap">
+    			<div class="head-img"><img src="" alt="" /></div>
+    			<div class="user-text">
+    				<p class="user-name">王小五</p>
+    				<p class="user-account">980469887@qq.com</p>
+    			</div>
+    			<div class="user-set-btn" tapmode onclick="openWin('about_win')">设置</div>
+    		</div>
+    	</div>
+    	<ul id="user-nav">
+    		<li class="user-nav-item" v-for="item in navs" v-bind="{winName:item.winName,name:item.name}" tapmode="click" onclick="openNavWin(this)">
+    			<div class="item-icon item-left" v-bind="{class:item.iconClassName}"></div>
+    			<div class="item-text item-right" v-text="item.name"></div>
+    		</li>
+    	</ul>
+    </div>
+</body>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/vue.js"></script>
+<script type="text/javascript" src="../script/vue-resource.min.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		api.parseTapmode();
+	}
+	
+	var userNav = new Vue({
+		el : '#user-nav',
+		data : {
+			navs : [
+				{
+					name : '投递记录',
+					winName : 'deliveryRecord',
+					iconClassName : 'icon_1'
+				},
+				{
+					name : '谁看过我',
+					winName : 'seeMe',
+					iconClassName : 'icon_2'
+				},
+				{
+					name : '我的收藏',
+					winName : 'myCollection',
+					iconClassName : 'icon_3'
+				},
+				{
+					name : '人事来信',
+					winName : 'hrMatters',
+					iconClassName : 'icon_4'
+				},
+				{
+					name : '职位订阅',
+					winName : 'jobSubscription',
+					iconClassName : 'icon_5'
+				},
+				{
+					name : '我看过谁',
+					winName : 'seeCompany',
+					iconClassName : 'icon_6'
+				},
+				{
+					name : '屏蔽公司',
+					winName : 'shieldCompany',
+					iconClassName : 'icon_7'
+				}
+			]
+		}
+	});
+	
+	function openWin(name){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+            name: ''+name+'',
+            url: ''+name+'.html',
+            bounces:false,
+            delay: delay,
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+    function openNavWin(obj){
+        var delay = 0;
+        if(api.systemType != 'ios'){
+            delay = 300;
+        }
+        api.openWin({
+//          name: ''+$api.attr(obj,'winName')+'',
+//          url: ''+$api.attr(obj,'winName')+'.html',
+			name: 'nav_win',
+            url: 'nav_win.html',
+            bounces:false,
+            delay: delay,
+            pageParam : {
+            	pageName : $api.attr(obj, 'name')
+            },
+            slidBackEnabled:true,
+            vScrollBarEnabled:false
+        });
+    }
+</script>
+</html>

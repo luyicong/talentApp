@@ -23,7 +23,7 @@ img,a,button,em,del,strong,var,label,cite,small,time,mark,code,textarea{
 header,section,footer {
 	position:relative;
 }
-ol,ul{
+ol,ul,li{
 	list-style:none;
 }
 input,button,textarea {
@@ -75,7 +75,7 @@ td,th {
 	background: url(../image/loading_more.gif) no-repeat center;
 	-webkit-background-size: contain;
 	background-size: contain;
-} 
+}
 .loading_more:after {
-	content: '加载更多';	
+	content: '加载更多';
 }
